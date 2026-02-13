@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💗</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: url('background.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,0.5);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background-color: pink;
+    padding: 30px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    color: black;
+    animation: fade 0.5s ease-in-out;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+video {
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+<body>
+
+<audio id="bgm"></audio>
+<audio id="clickSound" src="click.mp3"></audio>
+
+<div class="overlay">
+    <div class="box" id="content">
+        <h2>hai haii kaniaa, valentine ini aku cuma mau tanya beberapa hal, kamu kangen aku ga?</h2>
+        <div class="subtitle">aku cuma mau pastiin</div>
+        <button onclick="answer1('yes')">kangen</button>
+        <button onclick="answer1('no')">ngga</button>
+    </div>
+</div>
+
+<script>
+const content = document.getElementById("content");
+const bgm = document.getElementById("bgm");
+const clickSound = document.getElementById("clickSound");
+
+function playClick(){
+    clickSound.currentTime = 0;
+    clickSound.play();
+}
+
+function answer1(choice){
+    playClick();
+    if(choice === "no"){
+        bgm.src = "aboutyou.mp3";
+        bgm.play();
+        showEnd("owalaahh, oke deh, happy valentine cantik 🫶🏻");
+    } else {
+        bgm.src = "gluesong.mp3";
+        bgm.play();
+        content.innerHTML = `
+            <h2>seriuss? asikk, kamu mau aku balik apa engga?</h2>
+            <button onclick="answer2('yes')">mau la</button>
+            <button onclick="answer2('no')">ngga</button>
+        `;
+    }
+}
+
+function answer2(choice){
+    playClick();
+    if(choice === "no"){
+        bgm.src = "aboutyou.mp3";
+        bgm.play();
+        showEnd("owalaahh, oke deh, happy valentine cantik 🫶🏻");
+    } else {
+        bgm.src = "gluesong.mp3";
+        bgm.play();
+        showEnd("WIDIHH, OKE YA BENERANN, AKU BALIKK, HAPPY VALENTINE INCESS 🫶🏻");
+    }
+}
+
+function showEnd(text){
+    content.innerHTML = `
+        <h2>${text}</h2>
+        <video src="video.mp4" autoplay controls></video>
+    `;
+}
+</script>
+
+</body>
+</html>
